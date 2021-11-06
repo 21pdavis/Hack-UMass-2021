@@ -1,22 +1,23 @@
 # import Weather
 # import Message
 
-from gpiozero import Motor
+# from gpiozero import Motor
 from time import sleep
+import TextToSpeech
 
-in1 = 24
-in2 = 23
-in3 = 27
-in4 = 17
-en1 = 25
-en2 = 22
-temp1=1
+# in1 = 24
+# in2 = 23
+# in3 = 27
+# in4 = 17
+# en1 = 25
+# en2 = 22
+# temp1=1
 
-motor1 = Motor(in1, in2)
-motor2 = Motor(in3, in4)
+# motor1 = Motor(in1, in2)
+# motor2 = Motor(in3, in4)
 
-motor1_enable = OutputDevice(en1)
-motor2_enable = OutputDevice(en2)
+# motor1_enable = OutputDevice(en1)
+# motor2_enable = OutputDevice(en2)
 
 # GPIO.setmode(GPIO.BCM)
 # GPIO.setup(in1,GPIO.OUT)
@@ -36,9 +37,12 @@ speed = 1
 
 while(1):
 
-    x=chr(input())
-    
-    if x=='r':
+    x=str(input())
+    if x=='[':
+        print("text to speech")
+        TextToSpeech.play("Hello World")
+        x='z'
+    elif x=='r':
         print("run")
         motor1_enable.on()
         motor2_enable.on()

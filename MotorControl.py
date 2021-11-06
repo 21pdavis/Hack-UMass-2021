@@ -1,7 +1,9 @@
 # Python Script
 # https://www.electronicshub.org/raspberry-pi-l298n-interface-tutorial-control-dc-motor-l298n-raspberry-pi/
 
-import RPi.GPIO as GPIO          
+import RPi.GPIO as GPIO
+import TextToSpeech   
+import DistanceSensor       
 from time import sleep
 
 in1 = 24
@@ -100,25 +102,30 @@ p4.start(25)
 print("\n")
 print("The default speed & direction of motor is LOW & Forward.....")
 print("r-run s-stop f-forward b-backward l-low m-medium h-high e-exit")
-print("\n")    
+print("\n")
+
 
 while(1):
 
     x=raw_input()
-    if x=='0':
-        print("back and forth")
-        backAndForth()
+    if x=='d' :
+        dist = DistanceSensor.distance()
+        print ("Measured Distance = %.1f cm" % dist)
+        time.sleep(1)
+    elif x=='[':
+        print("text to speech")
+        TextToSpeech.play("Hello World")
         x='z'
 
-    if x=='1':
+    elif x=='1':
         turnLeft()
         print("left")
         x='z'
-    if x=='2':
+    elif x=='2':
         turnRight()
         print("right")
         x='z'
-    if x=='r':
+    elif x=='r':
         print("run")
         if(temp1==1):
          moveForward()
