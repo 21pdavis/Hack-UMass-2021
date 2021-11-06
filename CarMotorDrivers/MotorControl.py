@@ -6,17 +6,36 @@ from time import sleep
 
 in1 = 24
 in2 = 23
-en = 25
+in3 = 27
+in4 = 17
+en1 = 25
+en2 = 22
 temp1=1
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(in1,GPIO.OUT)
 GPIO.setup(in2,GPIO.OUT)
-GPIO.setup(en,GPIO.OUT)
+GPIO.setup(en1,GPIO.OUT)
+GPIO.setup(en2,GPIO.OUT)
 GPIO.output(in1,GPIO.LOW)
 GPIO.output(in2,GPIO.LOW)
-p=GPIO.PWM(en,1000)
-
+p=GPIO.PWM(en1,1000)
+p=GPIO.PWM(en2,1000)
+def moveForward():
+    GPIO.output(in1,GPIO.HIGH)
+    GPIO.output(in2,GPIO.LOW)
+    GPIO.output(in3,GPIO.HIGH)
+    GPIO.output(in4,GPIO.LOW)
+def moveBackward():
+    GPIO.output(in1,GPIO.LOW)
+    GPIO.output(in2,GPIO.HIGH)
+    GPIO.output(in3,GPIO.LOW)
+    GPIO.output(in4,GPIO.HIGH)
+def stopMotors():
+    GPIO.output(in1,GPIO.LOW)
+    GPIO.output(in2,GPIO.LOW)
+    GPIO.output(in3,GPIO.LOW)
+    GPIO.output(in4,GPIO.LOW)
 p.start(25)
 print("\n")
 print("The default speed & direction of motor is LOW & Forward.....")
@@ -30,13 +49,11 @@ while(1):
     if x=='r':
         print("run")
         if(temp1==1):
-         GPIO.output(in1,GPIO.HIGH)
-         GPIO.output(in2,GPIO.LOW)
+         moveForward()
          print("forward")
          x='z'
         else:
-         GPIO.output(in1,GPIO.LOW)
-         GPIO.output(in2,GPIO.HIGH)
+         moveBackward()
          print("backward")
          x='z'
 
@@ -49,15 +66,13 @@ while(1):
 
     elif x=='f':
         print("forward")
-        GPIO.output(in1,GPIO.HIGH)
-        GPIO.output(in2,GPIO.LOW)
+        moveForward()
         temp1=1
         x='z'
 
     elif x=='b':
         print("backward")
-        GPIO.output(in1,GPIO.LOW)
-        GPIO.output(in2,GPIO.HIGH)
+        moveBackward()
         temp1=0
         x='z'
 

@@ -1,5 +1,5 @@
-import Weather
-import Message
+# import Weather
+# import Message
 
 from gpiozero import Motor
 from time import sleep
@@ -9,7 +9,7 @@ in2 = 23
 en = 25
 temp1=1
 
-frontMotors = (in1, in2)
+frontMotors = Motor(in1, in2)
 
 # GPIO.setmode(GPIO.BCM)
 # GPIO.setup(in1,GPIO.OUT)
@@ -29,7 +29,7 @@ speed = 1
 
 while(1):
 
-    x=raw_input()
+    x=chr(input())
     
     if x=='r':
         print("run")
