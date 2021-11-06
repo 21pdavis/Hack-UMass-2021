@@ -124,37 +124,32 @@ while (1):
 
     elif x == '1':
         turnLeft()
-        print("left")
-        x = 'z'
-    elif x == '2':
+
+        x='z'
+    elif x=='2':
         turnRight()
-        print("right")
-        x = 'z'
-    elif x == 'r':
+        x='z'
+    elif x=='r':
         print("run")
-        if (temp1 == 1):
-            moveForward()
-            print("forward")
-            x = 'z'
+        if(temp1==1):
+         moveForward()
+         x='z'
         else:
-            moveBackward()
-            print("backward")
-            x = 'z'
+         moveBackward()
+         x='z'
 
 
-    elif x == 's':
-        print("stop")
+    elif x=='s':
         stopMotors()
         x = 'z'
 
-    elif x == 'f':
-        print("forward")
+    elif x=='f':
         moveForward()
         temp1 = 1
         x = 'z'
 
-    elif x == 'b':
-        print("backward")
+
+    elif x=='b':
         moveBackward()
         temp1 = 0
         x = 'z'
@@ -182,9 +177,8 @@ while (1):
         p_dict[3].ChangeDutyCycle(75)
         p_dict[4].ChangeDutyCycle(75)
         x = 'z'
-
-
-    elif x == 'e':
+    
+    elif x=='e':
         GPIO.cleanup()
         print("GPIO Clean up")
         break
