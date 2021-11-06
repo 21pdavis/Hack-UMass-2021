@@ -66,10 +66,10 @@ def turnLeft():
     GPIO.output(in_dict[2], GPIO.LOW)
     GPIO.output(in_dict[3], GPIO.LOW)
     GPIO.output(in_dict[4], GPIO.HIGH)
-    GPIO.output(in_dict[5], GPIO.HIGH)
-    GPIO.output(in_dict[6], GPIO.LOW)
-    GPIO.output(in_dict[7], GPIO.LOW)
-    GPIO.output(in_dict[8], GPIO.HIGH)
+    GPIO.output(in_dict[5], GPIO.LOW)
+    GPIO.output(in_dict[6], GPIO.HIGH)
+    GPIO.output(in_dict[7], GPIO.HIGH)
+    GPIO.output(in_dict[8], GPIO.LOW)
 
 
 def turnRight():
@@ -77,10 +77,10 @@ def turnRight():
     GPIO.output(in_dict[2], GPIO.HIGH)
     GPIO.output(in_dict[3], GPIO.HIGH)
     GPIO.output(in_dict[4], GPIO.LOW)
-    GPIO.output(in_dict[5], GPIO.LOW)
-    GPIO.output(in_dict[6], GPIO.HIGH)
-    GPIO.output(in_dict[7], GPIO.HIGH)
-    GPIO.output(in_dict[8], GPIO.LOW)
+    GPIO.output(in_dict[5], GPIO.HIGH)
+    GPIO.output(in_dict[6], GPIO.LOW)
+    GPIO.output(in_dict[7], GPIO.LOW)
+    GPIO.output(in_dict[8], GPIO.HIGH)
 
 
 bd = BlueDot()
