@@ -58,6 +58,7 @@ def moveForward():
     GPIO.output(in6,GPIO.LOW)
     GPIO.output(in7,GPIO.HIGH)
     GPIO.output(in8,GPIO.LOW)
+    print("forward")
 def moveBackward():
     GPIO.output(in1,GPIO.LOW)
     GPIO.output(in2,GPIO.HIGH)
@@ -67,6 +68,7 @@ def moveBackward():
     GPIO.output(in6,GPIO.HIGH)
     GPIO.output(in7,GPIO.LOW)
     GPIO.output(in8,GPIO.HIGH)
+    print("backward")
 def stopMotors():
     GPIO.output(in1,GPIO.LOW)
     GPIO.output(in2,GPIO.LOW)
@@ -76,6 +78,7 @@ def stopMotors():
     GPIO.output(in6,GPIO.LOW)
     GPIO.output(in7,GPIO.LOW)
     GPIO.output(in8,GPIO.LOW)
+    print("stop")
 def turnLeft():
     GPIO.output(in1,GPIO.HIGH)
     GPIO.output(in2,GPIO.LOW)
@@ -85,6 +88,7 @@ def turnLeft():
     GPIO.output(in6,GPIO.HIGH)
     GPIO.output(in7,GPIO.LOW)
     GPIO.output(in8,GPIO.HIGH)
+    print("left")
 def turnRight():
     GPIO.output(in1,GPIO.LOW)
     GPIO.output(in2,GPIO.HIGH)
@@ -94,6 +98,7 @@ def turnRight():
     GPIO.output(in6,GPIO.LOW)
     GPIO.output(in7,GPIO.HIGH)
     GPIO.output(in8,GPIO.LOW)
+    print("right")
     
 
 p1.start(25)
@@ -120,37 +125,30 @@ while(1):
 
     elif x=='1':
         turnLeft()
-        print("left")
         x='z'
     elif x=='2':
         turnRight()
-        print("right")
         x='z'
     elif x=='r':
         print("run")
         if(temp1==1):
          moveForward()
-         print("forward")
          x='z'
         else:
          moveBackward()
-         print("backward")
          x='z'
 
 
     elif x=='s':
-        print("stop")
         stopMotors()
         x='z'
 
     elif x=='f':
-        print("forward")
         moveForward()
         temp1=1
         x='z'
 
     elif x=='b':
-        print("backward")
         moveBackward()
         temp1=0
         x='z'
