@@ -33,10 +33,6 @@ GPIO.setup(en1,GPIO.OUT)
 GPIO.setup(en2,GPIO.OUT)
 GPIO.setup(en3,GPIO.OUT)
 GPIO.setup(en4,GPIO.OUT)
-GPIO.setup(en5,GPIO.OUT)
-GPIO.setup(en6,GPIO.OUT)
-GPIO.setup(en7,GPIO.OUT)
-GPIO.setup(en8,GPIO.OUT)
 
 GPIO.output(in1,GPIO.LOW)
 GPIO.output(in2,GPIO.LOW)
@@ -46,10 +42,10 @@ GPIO.output(in5,GPIO.LOW)
 GPIO.output(in6,GPIO.LOW)
 GPIO.output(in7,GPIO.LOW)
 GPIO.output(in8,GPIO.LOW)
-p=GPIO.PWM(en1,1000)
-p=GPIO.PWM(en2,1000)
-p=GPIO.PWM(en3,1000)
-p=GPIO.PWM(en4,1000)
+p1=GPIO.PWM(en1,1000)
+p2=GPIO.PWM(en2,1000)
+p3=GPIO.PWM(en3,1000)
+p4=GPIO.PWM(en4,1000)
 def moveForward():
     GPIO.output(in1,GPIO.HIGH)
     GPIO.output(in2,GPIO.LOW)
@@ -77,7 +73,30 @@ def stopMotors():
     GPIO.output(in6,GPIO.LOW)
     GPIO.output(in7,GPIO.LOW)
     GPIO.output(in8,GPIO.LOW)
-p.start(25)
+def turnLeft():
+    GPIO.output(in1,GPIO.HIGH)
+    GPIO.output(in2,GPIO.LOW)
+    GPIO.output(in3,GPIO.HIGH)
+    GPIO.output(in4,GPIO.LOW)
+    GPIO.output(in5,GPIO.LOW)
+    GPIO.output(in6,GPIO.HIGH)
+    GPIO.output(in7,GPIO.LOW)
+    GPIO.output(in8,GPIO.HIGH)
+def turnRight():
+    GPIO.output(in1,GPIO.LOW)
+    GPIO.output(in2,GPIO.HIGH)
+    GPIO.output(in3,GPIO.LOW)
+    GPIO.output(in4,GPIO.HIGH)
+    GPIO.output(in5,GPIO.HIGH)
+    GPIO.output(in6,GPIO.LOW)
+    GPIO.output(in7,GPIO.HIGH)
+    GPIO.output(in8,GPIO.LOW)
+    
+
+p1.start(25)
+p2.start(25)
+p3.start(25)
+p4.start(25)
 print("\n")
 print("The default speed & direction of motor is LOW & Forward.....")
 print("r-run s-stop f-forward b-backward l-low m-medium h-high e-exit")
@@ -86,7 +105,19 @@ print("\n")
 while(1):
 
     x=raw_input()
-    
+    if x=='0':
+        print("back and forth")
+        backAndForth()
+        x='z'
+
+    if x=='1':
+        turnLeft()
+        print("left")
+        x='z'
+    if x=='2':
+        turnRight()
+        print("right")
+        x='z'
     if x=='r':
         print("run")
         if(temp1==1):
