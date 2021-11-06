@@ -2,179 +2,193 @@
 # https://www.electronicshub.org/raspberry-pi-l298n-interface-tutorial-control-dc-motor-l298n-raspberry-pi/
 
 import RPi.GPIO as GPIO
-import TextToSpeech   
-import DistanceSensor       
+import TextToSpeech
+import DistanceSensor
+from bluedot import BlueDot
 from time import sleep
 
-in1 = 24
-in2 = 23
-in3 = 27
-in4 = 17
-in5 = 5
-in6 = 6
-in7 = 12
-in8 = 16
+# odd numbers are forwards, even numbers are backwards
+in_dict = {1: 23, 2: 24, 3: 27, 4: 17, 5: 6, 6: 5, 7: 12, 8: 16}
 
-en1 = 25
-en2 = 22
-en3 = 13
-en4 = 26
-temp1=1
+en_dict = {1: 25, 2: 22, 3: 13, 4: 26}
+
+temp1 = 1
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(in1,GPIO.OUT)
-GPIO.setup(in2,GPIO.OUT)
-GPIO.setup(in3,GPIO.OUT)
-GPIO.setup(in4,GPIO.OUT)
-GPIO.setup(in5,GPIO.OUT)
-GPIO.setup(in6,GPIO.OUT)
-GPIO.setup(in7,GPIO.OUT)
-GPIO.setup(in8,GPIO.OUT)
+for port in in_dict:
+    GPIO.setup(in_dict[port], GPIO.OUT)
 
-GPIO.setup(en1,GPIO.OUT)
-GPIO.setup(en2,GPIO.OUT)
-GPIO.setup(en3,GPIO.OUT)
-GPIO.setup(en4,GPIO.OUT)
+for port in en_dict:
+    GPIO.setup(en_dict[port], GPIO.OUT)
 
-GPIO.output(in1,GPIO.LOW)
-GPIO.output(in2,GPIO.LOW)
-GPIO.output(in3,GPIO.LOW)
-GPIO.output(in4,GPIO.LOW)
-GPIO.output(in5,GPIO.LOW)
-GPIO.output(in6,GPIO.LOW)
-GPIO.output(in7,GPIO.LOW)
-GPIO.output(in8,GPIO.LOW)
-p1=GPIO.PWM(en1,1000)
-p2=GPIO.PWM(en2,1000)
-p3=GPIO.PWM(en3,1000)
-p4=GPIO.PWM(en4,1000)
+for port in in_dict:
+    GPIO.output(in_dict[port], GPIO.LOW)
+
+p_dict = {1: GPIO.PWM(en_dict[1], 1000), 2: GPIO.PWM(en_dict[2], 1000), 3: GPIO.PWM(en_dict[3], 1000),
+          4: GPIO.PWM(en_dict[4], 1000)}
+
+
 def moveForward():
-    GPIO.output(in1,GPIO.HIGH)
-    GPIO.output(in2,GPIO.LOW)
-    GPIO.output(in3,GPIO.HIGH)
-    GPIO.output(in4,GPIO.LOW)
-    GPIO.output(in5,GPIO.HIGH)
-    GPIO.output(in6,GPIO.LOW)
-    GPIO.output(in7,GPIO.HIGH)
-    GPIO.output(in8,GPIO.LOW)
-def moveBackward():
-    GPIO.output(in1,GPIO.LOW)
-    GPIO.output(in2,GPIO.HIGH)
-    GPIO.output(in3,GPIO.LOW)
-    GPIO.output(in4,GPIO.HIGH)
-    GPIO.output(in5,GPIO.LOW)
-    GPIO.output(in6,GPIO.HIGH)
-    GPIO.output(in7,GPIO.LOW)
-    GPIO.output(in8,GPIO.HIGH)
-def stopMotors():
-    GPIO.output(in1,GPIO.LOW)
-    GPIO.output(in2,GPIO.LOW)
-    GPIO.output(in3,GPIO.LOW)
-    GPIO.output(in4,GPIO.LOW)
-    GPIO.output(in5,GPIO.LOW)
-    GPIO.output(in6,GPIO.LOW)
-    GPIO.output(in7,GPIO.LOW)
-    GPIO.output(in8,GPIO.LOW)
-def turnLeft():
-    GPIO.output(in1,GPIO.HIGH)
-    GPIO.output(in2,GPIO.LOW)
-    GPIO.output(in3,GPIO.HIGH)
-    GPIO.output(in4,GPIO.LOW)
-    GPIO.output(in5,GPIO.LOW)
-    GPIO.output(in6,GPIO.HIGH)
-    GPIO.output(in7,GPIO.LOW)
-    GPIO.output(in8,GPIO.HIGH)
-def turnRight():
-    GPIO.output(in1,GPIO.LOW)
-    GPIO.output(in2,GPIO.HIGH)
-    GPIO.output(in3,GPIO.LOW)
-    GPIO.output(in4,GPIO.HIGH)
-    GPIO.output(in5,GPIO.HIGH)
-    GPIO.output(in6,GPIO.LOW)
-    GPIO.output(in7,GPIO.HIGH)
-    GPIO.output(in8,GPIO.LOW)
-    
+    GPIO.output(in_dict[1], GPIO.HIGH)
+    GPIO.output(in_dict[2], GPIO.LOW)
+    GPIO.output(in_dict[3], GPIO.HIGH)
+    GPIO.output(in_dict[4], GPIO.LOW)
+    GPIO.output(in_dict[5], GPIO.HIGH)
+    GPIO.output(in_dict[6], GPIO.LOW)
+    GPIO.output(in_dict[7], GPIO.HIGH)
+    GPIO.output(in_dict[8], GPIO.LOW)
 
-p1.start(25)
-p2.start(25)
-p3.start(25)
-p4.start(25)
+
+def moveBackward():
+    GPIO.output(in_dict[1], GPIO.LOW)
+    GPIO.output(in_dict[2], GPIO.HIGH)
+    GPIO.output(in_dict[3], GPIO.LOW)
+    GPIO.output(in_dict[4], GPIO.HIGH)
+    GPIO.output(in_dict[5], GPIO.LOW)
+    GPIO.output(in_dict[6], GPIO.HIGH)
+    GPIO.output(in_dict[7], GPIO.LOW)
+    GPIO.output(in_dict[8], GPIO.HIGH)
+
+
+def stopMotors():
+    GPIO.output(in_dict[1], GPIO.LOW)
+    GPIO.output(in_dict[2], GPIO.LOW)
+    GPIO.output(in_dict[3], GPIO.LOW)
+    GPIO.output(in_dict[4], GPIO.LOW)
+    GPIO.output(in_dict[5], GPIO.LOW)
+    GPIO.output(in_dict[6], GPIO.LOW)
+    GPIO.output(in_dict[7], GPIO.LOW)
+    GPIO.output(in_dict[8], GPIO.LOW)
+
+
+def turnLeft():
+    GPIO.output(in_dict[1], GPIO.HIGH)
+    GPIO.output(in_dict[2], GPIO.LOW)
+    GPIO.output(in_dict[3], GPIO.HIGH)
+    GPIO.output(in_dict[4], GPIO.LOW)
+    GPIO.output(in_dict[5], GPIO.LOW)
+    GPIO.output(in_dict[6], GPIO.HIGH)
+    GPIO.output(in_dict[7], GPIO.LOW)
+    GPIO.output(in_dict[8], GPIO.HIGH)
+
+
+def turnRight():
+    GPIO.output(in_dict[1], GPIO.LOW)
+    GPIO.output(in_dict[2], GPIO.HIGH)
+    GPIO.output(in_dict[3], GPIO.LOW)
+    GPIO.output(in_dict[4], GPIO.HIGH)
+    GPIO.output(in_dict[5], GPIO.HIGH)
+    GPIO.output(in_dict[6], GPIO.LOW)
+    GPIO.output(in_dict[7], GPIO.HIGH)
+    GPIO.output(in_dict[8], GPIO.LOW)
+
+
+bd = BlueDot()
+
+
+def move(pos):
+    if pos.top:
+        moveForward()
+    elif pos.bottom:
+        moveBackward()
+    elif pos.left:
+        turnLeft()
+    elif pos.right:
+        turnRight()
+    elif pos.middle:
+        stopMotors()
+
+
+for p in p_dict:
+    p_dict[p].start(25)
+
 print("\n")
 print("The default speed & direction of motor is LOW & Forward.....")
 print("r-run s-stop f-forward b-backward l-low m-medium h-high e-exit")
 print("\n")
 
+while (1):
 
-while(1):
+    bd.when_pressed = move
+    bd.when_moved = move
 
-    x=raw_input()
-    if x=='d' :
+    x = str(input())
+    if x == 'd':
         dist = DistanceSensor.distance()
-        print ("Measured Distance = %.1f cm" % dist)
-        time.sleep(1)
-    elif x=='[':
+        print("Measured Distance = %.1f cm" % dist)
+        sleep(1)
+    elif x == '[':
         print("text to speech")
         TextToSpeech.play("Hello World")
-        x='z'
+        x = 'z'
 
-    elif x=='1':
+    elif x == '1':
         turnLeft()
         print("left")
-        x='z'
-    elif x=='2':
+        x = 'z'
+    elif x == '2':
         turnRight()
         print("right")
-        x='z'
-    elif x=='r':
+        x = 'z'
+    elif x == 'r':
         print("run")
-        if(temp1==1):
-         moveForward()
-         print("forward")
-         x='z'
+        if (temp1 == 1):
+            moveForward()
+            print("forward")
+            x = 'z'
         else:
-         moveBackward()
-         print("backward")
-         x='z'
+            moveBackward()
+            print("backward")
+            x = 'z'
 
 
-    elif x=='s':
+    elif x == 's':
         print("stop")
         stopMotors()
-        x='z'
+        x = 'z'
 
-    elif x=='f':
+    elif x == 'f':
         print("forward")
         moveForward()
-        temp1=1
-        x='z'
+        temp1 = 1
+        x = 'z'
 
-    elif x=='b':
+    elif x == 'b':
         print("backward")
         moveBackward()
-        temp1=0
-        x='z'
+        temp1 = 0
+        x = 'z'
 
-    elif x=='l':
+    elif x == 'l':
         print("low")
-        p.ChangeDutyCycle(25)
-        x='z'
+        p_dict[1].ChangeDutyCycle(25)
+        p_dict[2].ChangeDutyCycle(25)
+        p_dict[3].ChangeDutyCycle(25)
+        p_dict[4].ChangeDutyCycle(25)
+        x = 'z'
 
-    elif x=='m':
+    elif x == 'm':
         print("medium")
-        p.ChangeDutyCycle(50)
-        x='z'
+        p_dict[1].ChangeDutyCycle(50)
+        p_dict[2].ChangeDutyCycle(50)
+        p_dict[3].ChangeDutyCycle(50)
+        p_dict[4].ChangeDutyCycle(50)
+        x = 'z'
 
-    elif x=='h':
+    elif x == 'h':
         print("high")
-        p.ChangeDutyCycle(75)
-        x='z'
-     
-    
-    elif x=='e':
+        p_dict[1].ChangeDutyCycle(75)
+        p_dict[2].ChangeDutyCycle(75)
+        p_dict[3].ChangeDutyCycle(75)
+        p_dict[4].ChangeDutyCycle(75)
+        x = 'z'
+
+
+    elif x == 'e':
         GPIO.cleanup()
         print("GPIO Clean up")
         break
-    
+
     else:
         print("<<<  wrong data  >>>")
         print("please enter the defined data to continue.....")
