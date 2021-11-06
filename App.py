@@ -6,10 +6,17 @@ from time import sleep
 
 in1 = 24
 in2 = 23
-en = 25
+in3 = 27
+in4 = 17
+en1 = 25
+en2 = 22
 temp1=1
 
-frontMotors = Motor(in1, in2)
+motor1 = Motor(in1, in2)
+motor2 = Motor(in3, in4)
+
+motor1_enable = OutputDevice(en1)
+motor2_enable = OutputDevice(en2)
 
 # GPIO.setmode(GPIO.BCM)
 # GPIO.setup(in1,GPIO.OUT)
@@ -33,6 +40,8 @@ while(1):
     
     if x=='r':
         print("run")
+        motor1_enable.on()
+        motor2_enable.on()
         if(temp1==1):
          frontMotors.forward(speed)
          print("forward")
