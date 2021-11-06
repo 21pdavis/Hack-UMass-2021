@@ -1,12 +1,9 @@
 import RPi.GPIO as GPIO
 from time import sleep
-
-#GPIO Mode (BOARD / BCM)
-GPIO.setmode(GPIO.BCM)
  
 #set GPIO Pins
-GPIO_TRIGGER = 18
-GPIO_ECHO = 24
+GPIO_TRIGGER = 123
+GPIO_ECHO = 123
  
 #set GPIO direction (IN / OUT)
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
