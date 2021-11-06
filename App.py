@@ -1,4 +1,5 @@
 import Weather
+import Message
 
-
-print(Weather.getCurrentWeather())
+# print(Message.sendMessage("Message test from Twilio.", '+14134064010'))
+# print(Weather.getCurrentWeather())
