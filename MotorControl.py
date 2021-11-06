@@ -6,6 +6,7 @@ import TextToSpeech
 import DistanceSensor       
 from time import sleep
 
+
 in1 = 24
 in2 = 23
 in3 = 27
@@ -156,17 +157,26 @@ while(1):
 
     elif x=='l':
         print("low")
-        p.ChangeDutyCycle(25)
+        p1.ChangeDutyCycle(25)
+        p2.ChangeDutyCycle(25)
+        p3.ChangeDutyCycle(25)
+        p4.ChangeDutyCycle(25)
         x='z'
 
     elif x=='m':
         print("medium")
-        p.ChangeDutyCycle(50)
+        p1.ChangeDutyCycle(50)
+        p2.ChangeDutyCycle(50)
+        p3.ChangeDutyCycle(50)
+        p4.ChangeDutyCycle(50)
         x='z'
 
     elif x=='h':
         print("high")
-        p.ChangeDutyCycle(75)
+        p1.ChangeDutyCycle(75)
+        p2.ChangeDutyCycle(75)
+        p3.ChangeDutyCycle(75)
+        p4.ChangeDutyCycle(75)
         x='z'
      
     
@@ -178,3 +188,22 @@ while(1):
     else:
         print("<<<  wrong data  >>>")
         print("please enter the defined data to continue.....")
+
+from bluedot import BlueDot
+
+bd = BlueDot()
+
+def move(pos):
+    if pos.top:
+        moveForward()
+    elif pos.bottom:
+        moveBackward()
+    elif pos.left:
+        turnLeft()
+    elif pos.right:
+        turnRight()
+    elif pos.middle:
+        stopMotors()
+        
+bd.when_pressed = move
+bd.when_moved = move
