@@ -83,7 +83,7 @@ def turnRight():
     moveForward()
 
 
-bd = BlueDot(col=2)
+bd = BlueDot(cols=2)
 
 
 
