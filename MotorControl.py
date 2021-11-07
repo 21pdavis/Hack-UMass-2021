@@ -3,6 +3,8 @@
 
 import RPi.GPIO as GPIO
 # import TextToSpeech
+import cv2
+
 import DistanceSensor as distsensor
 from bluedot import BlueDot
 from time import sleep
@@ -86,6 +88,7 @@ def turnRight():
     p_dict[4].ChangeDutyCycle(50)
     moveForward()
 
+def
 
 bd = BlueDot(cols=2)
 bd[0,0].color = "blue"
@@ -138,6 +141,10 @@ print("\n")
 print("The default speed & direction of motor is LOW & Forward.....")
 print("r-run s-stop f-forward b-backward l-low m-medium h-high e-exit")
 print("\n")
+
+# eye detection initialization
+eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
 while (1):
 
@@ -235,8 +242,6 @@ while (1):
     
     ## code for camera interfacing
     # eye detection
-    eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
-    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
     ret, img = cap.read()
 
