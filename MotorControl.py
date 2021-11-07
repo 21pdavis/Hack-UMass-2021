@@ -27,6 +27,10 @@ for port in in_dict:
 p_dict = {1: GPIO.PWM(en_dict[1], 1000), 2: GPIO.PWM(en_dict[2], 1000), 3: GPIO.PWM(en_dict[3], 1000),
           4: GPIO.PWM(en_dict[4], 1000)}
 
+p_dict[1].ChangeDutyCycle(75)
+p_dict[2].ChangeDutyCycle(75)
+p_dict[3].ChangeDutyCycle(75)
+p_dict[4].ChangeDutyCycle(75)
 
 def moveForward():
     GPIO.output(in_dict[1], GPIO.HIGH)
@@ -62,18 +66,18 @@ def stopMotors():
 
 
 def turnLeft():
-    p[1].ChangeDutyCycle(75)
-    p[2].ChangeDutyCycle(25)
-    p[3].ChangeDutyCycle(25)
-    p[4].ChangeDutyCycle(75)
+    p[1].ChangeDutyCycle(100)
+    p[2].ChangeDutyCycle(50)
+    p[3].ChangeDutyCycle(50)
+    p[4].ChangeDutyCycle(100)
     moveForward()
 
 
 def turnRight():
-    p[1].ChangeDutyCycle(25)
-    p[2].ChangeDutyCycle(75)
-    p[3].ChangeDutyCycle(75)
-    p[4].ChangeDutyCycle(25)
+    p[1].ChangeDutyCycle(50)
+    p[2].ChangeDutyCycle(100)
+    p[3].ChangeDutyCycle(100)
+    p[4].ChangeDutyCycle(50)
     moveForward()
 
 
@@ -156,20 +160,12 @@ while (1):
         p_dict[4].ChangeDutyCycle(25)
         x = 'z'
 
-    elif x == 'm':
-        print("medium")
-        p_dict[1].ChangeDutyCycle(50)
-        p_dict[2].ChangeDutyCycle(50)
-        p_dict[3].ChangeDutyCycle(50)
-        p_dict[4].ChangeDutyCycle(50)
-        x = 'z'
-
     elif x == 'h':
         print("high")
-        p_dict[1].ChangeDutyCycle(75)
-        p_dict[2].ChangeDutyCycle(75)
-        p_dict[3].ChangeDutyCycle(75)
-        p_dict[4].ChangeDutyCycle(75)
+        p_dict[1].ChangeDutyCycle(100)
+        p_dict[2].ChangeDutyCycle(100)
+        p_dict[3].ChangeDutyCycle(100)
+        p_dict[4].ChangeDutyCycle(100)
         x = 'z'
     
     elif x=='e':
