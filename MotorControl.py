@@ -85,9 +85,13 @@ def turnRight():
     moveForward()
 
 
-bd = BlueDot(cols=2)
-bd[1,0].square=True
-
+bd = BlueDot(cols=3, rows=3)
+bd.square=True
+bd[0,0].visible = False
+bd[2,0].visible = False
+bd[0,2].visible = False
+bd[2,2].visible = False
+bd[1,1].visible = False
 
 def move(pos):
     print("pressed circle")
@@ -149,9 +153,10 @@ while (1):
     # pygame.display.flip()
     # clock.tick(60)
 
-    bd[0,0].when_pressed = move
-    bd[0,0].when_moved = move
-    bd[1,0].when_pressed = moveSprite
+    bd[1,0].when_pressed = moveForward()
+    bd[1,2].when_pressed = moveBackward()
+    bd[0,1].when_pressed = turnLeft()
+    bd[2,1].when_pressed = turnRight()
 
     x = str(input())
     if x == 'd':
