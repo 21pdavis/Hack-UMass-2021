@@ -100,6 +100,7 @@ def move(pos):
     elif pos.middle:
         stopMotors()
 
+
 def moveSprite():
     sprite_animation_final.attack()
 

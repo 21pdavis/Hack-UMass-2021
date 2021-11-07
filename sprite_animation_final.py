@@ -5,6 +5,7 @@ import sys
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos_x, pos_y):
         super().__init__()
+        
         self.attack_animation = False
         self.sprites = []
         self.sprites.append(pygame.image.load('face_1.png'))
@@ -39,6 +40,8 @@ pygame.init()
 clock = pygame.time.Clock()
 
 # Game Screen
+os.environ["DISPLAY"] = ":0"
+pygame.display.init()
 screen_width = 800
 screen_height = 480
 screen = pygame.display.set_mode((screen_width, screen_height))
