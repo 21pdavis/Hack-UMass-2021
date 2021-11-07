@@ -125,7 +125,6 @@ def square():
     print("before: "+str(player.attack_animation))
     player.attack()
     print("after: "+str(player.attack_animation))
-    print(str(self.current_sprite))
     print("Measured Distance = %.1f cm" % dist.distance())
     sleep(1)
     
@@ -148,7 +147,7 @@ while (1):
 
     screen.fill((0, 0, 0))
     moving_sprites.draw(screen)
-    player.update(0.15)
+    player.update(0.12)
     pygame.display.flip()
     clock.tick(60)
 
