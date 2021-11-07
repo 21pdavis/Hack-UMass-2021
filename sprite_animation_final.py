@@ -59,7 +59,7 @@ class Player(pygame.sprite.Sprite):
         #         self.current_sprite = 4
         #         self.wink_animation = False
 
-        self.image = self.wink_sprites[int(self.current_sprite)]
+        self.image = self.bootup_sprites[int(self.current_sprite)]
 
 
 # General setup
