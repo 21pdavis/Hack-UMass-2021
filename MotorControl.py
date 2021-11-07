@@ -13,6 +13,7 @@ import os
 import sys
 import pygame
 import cv2
+from TextToSpeech import play
 
 # odd numbers are forwards, even numbers are backwards
 in_dict = {1: 23, 2: 24, 3: 27, 4: 17, 5: 6, 6: 5, 7: 12, 8: 16}
@@ -145,6 +146,8 @@ print("\n")
 # eye detection initialization
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+
+play("This is a test string")
 
 while (1):
     bd[0,0].when_pressed = move
