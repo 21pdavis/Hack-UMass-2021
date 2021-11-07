@@ -3,6 +3,8 @@
 
 import RPi.GPIO as GPIO
 # import TextToSpeech
+import cv2
+
 import DistanceSensor as distsensor
 from bluedot import BlueDot
 from time import sleep
@@ -10,6 +12,7 @@ import sprite_animation_final
 import os
 import sys
 import pygame
+import cv2
 
 # odd numbers are forwards, even numbers are backwards
 in_dict = {1: 23, 2: 24, 3: 27, 4: 17, 5: 6, 6: 5, 7: 12, 8: 16}
@@ -86,7 +89,6 @@ def turnRight():
     p_dict[4].ChangeDutyCycle(50)
     moveForward()
 
-
 bd = BlueDot(cols=2)
 bd[0,0].color = "blue"
 bd[1,0].color = "red"
@@ -108,7 +110,7 @@ player = sprite_animation_final.Player(100, 100)
 moving_sprites.add(player)
 
 def move(pos):
-    print("pressed circle")
+    # print("pressed circle")
     if pos.top:
         moveForward()
     elif pos.bottom:
@@ -121,10 +123,10 @@ def move(pos):
         stopMotors()
 
 def square():
-    print("pressed square")
-    print("before: "+str(player.attack_animation))
+    # print("pressed square")
+    # print("before: "+str(player.attack_animation))
     player.attack()
-    print("after: "+str(player.attack_animation))
+    # print("after: "+str(player.attack_animation))
     print("Measured Distance = %.1f cm" % dist.distance())
     sleep(1)
     
@@ -138,6 +140,10 @@ print("\n")
 print("The default speed & direction of motor is LOW & Forward.....")
 print("r-run s-stop f-forward b-backward l-low m-medium h-high e-exit")
 print("\n")
+
+# eye detection initialization
+eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
 while (1):
 
@@ -232,5 +238,30 @@ while (1):
         GPIO.output(in_dict[3], GPIO.LOW)
         GPIO.output(in_dict[5], GPIO.LOW)
         GPIO.output(in_dict[7], GPIO.LOW)
+    
+    ## code for camera interfacing
+    # eye detection
 
+    ret, img = cap.read()
+
+    # resizing for faster detection
+    frame = cv2.resize(img, (800, 480))
+
+    # color-space initialization
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    # Execute MultiScale detections for eyes and bodies
+    eyes = eye_cascade.detectMultiScale(gray, 1.1, 5)
+
+    for (ex, ey, ew, eh) in eyes:
+        cv2.rectangle(img, (ex, ey), (ex + ew, ey + eh), (255, 0, 0), 2)
+        print('' + str(ex) + ' ' + str(ey) + ' ' + str(ew) + ' ' + str(eh))
+
+    # cv2.imshow('img', img)
+    k = cv2.waitKey(30) & 0xff
+    if k == 27:
+        break
+
+cap.release()
+cv2.destroyAllWindows()
 GPIO.cleanup()
