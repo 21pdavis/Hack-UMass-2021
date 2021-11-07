@@ -93,12 +93,12 @@ bd[1,0].square = True
 pygame.init()
 clock = pygame.time.Clock()
 
-os.environ["DISPLAY"] = ":0"
-pygame.display.init()
 screen_width = 800
 screen_height = 480
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Sprite Animation")
+os.environ["DISPLAY"] = ":0"
+pygame.display.init()
 
 # Creating the sprites and groups
 moving_sprites = pygame.sprite.Group()
@@ -120,6 +120,7 @@ def move(pos):
 
 def square():
     print("pressed square")
+    player.attack()
     print("Measured Distance = %.1f cm" % dist.distance())
     sleep(1)
     

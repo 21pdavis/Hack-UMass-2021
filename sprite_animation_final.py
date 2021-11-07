@@ -27,6 +27,7 @@ class Player(pygame.sprite.Sprite):
 
     def update(self, speed):
         if self.attack_animation:
+            print(str(self.current_sprite)+" | speed = "+str(speed))
             self.current_sprite += speed
             if int(self.current_sprite) >= len(self.sprites):
                 self.current_sprite = 0
