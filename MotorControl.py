@@ -145,12 +145,17 @@ while (1):
 
     screen.fill((0, 0, 0))
     moving_sprites.draw(screen)
-    moving_sprites.update(0.035)
+    moving_sprites.update(0.5)
     pygame.display.flip()
     clock.tick(60)
 
     x = str(input())
-    if x == 'd':
+    if x == 'a':
+        print("before: "+str(player.attack_animation))
+        player.attack()
+        print("after: "+str(player.attack_animation))
+        x = 'z'
+    elif x == 'd':
         print("Raw Distance = "+str(dist.distance()))
         print("Measured Distance = %.1f cm" % dist.distance())
         sleep(1)
