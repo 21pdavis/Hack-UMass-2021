@@ -18,6 +18,8 @@ en_dict = {1: 25, 2: 22, 3: 13, 4: 26}
 
 temp1 = 1
 
+GPIO.cleanup()
+
 GPIO.setmode(GPIO.BCM)
 for port in in_dict:
     GPIO.setup(in_dict[port], GPIO.OUT)
@@ -150,80 +152,80 @@ while (1):
     clock.tick(60)
 
     # x = str(input())
-    if x == 'a':
-        print("before: "+str(player.attack_animation))
-        if(player.attack_animation==False):
-            player.attack()
-        else:
-            print("already animating")
-        print("after: "+str(player.attack_animation))
-        x = 'z'
-    elif x == 'd':
-        print("Raw Distance = "+str(dist.distance()))
-        print("Measured Distance = %.1f cm" % dist.distance())
-        sleep(1)
-        x = 'z'
-    elif x == '[':
-        print("text to speech")
-        TextToSpeech.play("Hello World")
-        x = 'z'
+    # if x == 'a':
+    #     print("before: "+str(player.attack_animation))
+    #     if(player.attack_animation==False):
+    #         player.attack()
+    #     else:
+    #         print("already animating")
+    #     print("after: "+str(player.attack_animation))
+    #     x = 'z'
+    # elif x == 'd':
+    #     print("Raw Distance = "+str(dist.distance()))
+    #     print("Measured Distance = %.1f cm" % dist.distance())
+    #     sleep(1)
+    #     x = 'z'
+    # elif x == '[':
+    #     print("text to speech")
+    #     TextToSpeech.play("Hello World")
+    #     x = 'z'
 
-    elif x == '1':
-        turnLeft()
+    # elif x == '1':
+    #     turnLeft()
 
-        x='z'
-    elif x=='2':
-        turnRight()
-        x='z'
-    elif x=='r':
-        print("run")
-        if(temp1==1):
-         moveForward()
-         x='z'
-        else:
-         moveBackward()
-         x='z'
-
-
-    elif x=='s':
-        stopMotors()
-        x = 'z'
-
-    elif x=='f':
-        moveForward()
-        temp1 = 1
-        x = 'z'
+    #     x='z'
+    # elif x=='2':
+    #     turnRight()
+    #     x='z'
+    # elif x=='r':
+    #     print("run")
+    #     if(temp1==1):
+    #      moveForward()
+    #      x='z'
+    #     else:
+    #      moveBackward()
+    #      x='z'
 
 
-    elif x=='b':
-        moveBackward()
-        temp1 = 0
-        x = 'z'
+    # elif x=='s':
+    #     stopMotors()
+    #     x = 'z'
 
-    elif x == 'l':
-        print("low")
-        p_dict[1].ChangeDutyCycle(75)
-        p_dict[2].ChangeDutyCycle(75)
-        p_dict[3].ChangeDutyCycle(75)
-        p_dict[4].ChangeDutyCycle(75)
-        x = 'z'
+    # elif x=='f':
+    #     moveForward()
+    #     temp1 = 1
+    #     x = 'z'
 
-    elif x == 'h':
-        print("high")
-        p_dict[1].ChangeDutyCycle(100)
-        p_dict[2].ChangeDutyCycle(100)
-        p_dict[3].ChangeDutyCycle(100)
-        p_dict[4].ChangeDutyCycle(100)
-        x = 'z'
+
+    # elif x=='b':
+    #     moveBackward()
+    #     temp1 = 0
+    #     x = 'z'
+
+    # elif x == 'l':
+    #     print("low")
+    #     p_dict[1].ChangeDutyCycle(75)
+    #     p_dict[2].ChangeDutyCycle(75)
+    #     p_dict[3].ChangeDutyCycle(75)
+    #     p_dict[4].ChangeDutyCycle(75)
+    #     x = 'z'
+
+    # elif x == 'h':
+    #     print("high")
+    #     p_dict[1].ChangeDutyCycle(100)
+    #     p_dict[2].ChangeDutyCycle(100)
+    #     p_dict[3].ChangeDutyCycle(100)
+    #     p_dict[4].ChangeDutyCycle(100)
+    #     x = 'z'
     
-    elif x=='e':
-        GPIO.cleanup()
-        print("GPIO Clean up")
-        break
+    # elif x=='e':
+    #     GPIO.cleanup()
+    #     print("GPIO Clean up")
+    #     break
 
-    else:
-        print("<<<  wrong data  >>>")
-        print("please enter the defined data to continue.....")
+    # else:
+    #     print("<<<  wrong data  >>>")
+    #     print("please enter the defined data to continue.....")
 
     if(dist.distance()<=20):
         GPIO.output(in_dict[1], GPIO.LOW)
