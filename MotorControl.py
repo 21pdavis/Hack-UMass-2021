@@ -116,9 +116,11 @@ def move(pos):
     elif pos.middle:
         stopMotors()
 
-def moveSprite():
+def square():
     print("pressed square")
-    player.attack()
+    dist = DistanceSensor.distance()
+    print("Measured Distance = %.1f cm" % dist)
+    sleep(1)
 
 
 for p in p_dict:
@@ -133,7 +135,7 @@ while (1):
 
     bd[0,0].when_pressed = move
     bd[0,0].when_moved = move
-    bd[1,0].when_pressed = moveSprite
+    bd[1,0].when_pressed = square
 
     screen.fill((0, 0, 0))
     moving_sprites.draw(screen)
