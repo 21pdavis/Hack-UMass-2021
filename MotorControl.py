@@ -6,6 +6,10 @@ import RPi.GPIO as GPIO
 # import DistanceSensor
 from bluedot import BlueDot
 from time import sleep
+import sprite_animation_final
+import os
+import sys
+import pygame
 
 # odd numbers are forwards, even numbers are backwards
 in_dict = {1: 23, 2: 24, 3: 27, 4: 17, 5: 6, 6: 5, 7: 12, 8: 16}
@@ -81,10 +85,26 @@ def turnRight():
     moveForward()
 
 
-bd = BlueDot()
+bd = BlueDot(cols=2)
+bd[1,0].square = True
 
+pygame.init()
+clock = pygame.time.Clock()
+
+os.environ["DISPLAY"] = ":0"
+pygame.display.init()
+screen_width = 800
+screen_height = 480
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption("Sprite Animation")
+
+# Creating the sprites and groups
+moving_sprites = pygame.sprite.Group()
+player = sprite_animation_final.Player(100, 100)
+moving_sprites.add(player)
 
 def move(pos):
+    print("pressed circle")
     if pos.top:
         moveForward()
     elif pos.bottom:
@@ -95,6 +115,10 @@ def move(pos):
         turnRight()
     elif pos.middle:
         stopMotors()
+
+def moveSprite():
+    print("pressed square")
+    player.attack()
 
 
 for p in p_dict:
@@ -107,8 +131,15 @@ print("\n")
 
 while (1):
 
-    bd.when_pressed = move
-    bd.when_moved = move
+    bd[0,0].when_pressed = move
+    bd[0,0].when_moved = move
+    bd[1,0].when_pressed = moveSprite
+
+    screen.fill((0, 0, 0))
+    moving_sprites.draw(screen)
+    moving_sprites.update(0.035)
+    pygame.display.flip()
+    clock.tick(60)
 
     x = str(input())
     if x == 'd':
