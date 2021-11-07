@@ -31,10 +31,8 @@ class Player(pygame.sprite.Sprite):
             print(str(self.current_sprite)+" | speed = "+str(speed))
             self.current_sprite += speed
             if int(self.current_sprite) >= len(self.sprites):
-                self.current_sprite = 0
+                self.current_sprite = 4
                 self.attack_animation = False
-        else:
-            self.current_sprite = 3
 
         self.image = self.sprites[int(self.current_sprite)]
 
