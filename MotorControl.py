@@ -95,8 +95,8 @@ bd[1,0].square = True
 pygame.init()
 clock = pygame.time.Clock()
 
-screen_width = 700
-screen_height = 440
+screen_width = 800
+screen_height = 480
 screen = pygame.display.set_mode((screen_width, screen_height),pygame.FULLSCREEN)
 pygame.display.set_caption("Sprite Animation")
 os.environ["DISPLAY"] = ":0"
