@@ -8,12 +8,12 @@ GPIO.setup(4, GPIO.OUT)
 
 while(1):
     GPIO.output(4, GPIO.HIGH)
-    sleep(0.0005)
+    sleep(0.0002)
 
     print(GPIO.input(4))
-    
+
     GPIO.output(4, GPIO.LOW)
-    sleep(0.0005)
+    sleep(0.0002)
 
     print(GPIO.input(4))
 
