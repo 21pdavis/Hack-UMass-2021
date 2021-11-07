@@ -6,6 +6,7 @@ import RPi.GPIO as GPIO
 # import DistanceSensor
 from bluedot import BlueDot
 from time import sleep
+import sprite_animation_final
 
 # odd numbers are forwards, even numbers are backwards
 in_dict = {1: 23, 2: 24, 3: 27, 4: 17, 5: 6, 6: 5, 7: 12, 8: 16}
@@ -24,8 +25,8 @@ for port in en_dict:
 for port in in_dict:
     GPIO.output(in_dict[port], GPIO.LOW)
 
-p_dict = {1: GPIO.PWM(en_dict[1], 1000), 2: GPIO.PWM(en_dict[2], 1000), 3: GPIO.PWM(en_dict[3], 1000),
-          4: GPIO.PWM(en_dict[4], 1000)}
+p_dict = {1: GPIO.PWM(en_dict[1], 750), 2: GPIO.PWM(en_dict[2], 1000), 3: GPIO.PWM(en_dict[3], 1000),
+          4: GPIO.PWM(en_dict[4], 750)}
 
 p_dict[1].ChangeDutyCycle(100)
 p_dict[2].ChangeDutyCycle(100)
@@ -66,42 +67,29 @@ def stopMotors():
 
 
 def turnLeft():
-    GPIO.output(in_dict[1], GPIO.HIGH)
-    GPIO.output(in_dict[2], GPIO.LOW)
-    GPIO.output(in_dict[3], GPIO.LOW)
-    GPIO.output(in_dict[4], GPIO.HIGH)
-    GPIO.output(in_dict[5], GPIO.HIGH)
-    GPIO.output(in_dict[6], GPIO.LOW)
-    GPIO.output(in_dict[7], GPIO.LOW)
-    GPIO.output(in_dict[8], GPIO.HIGH)
+    p_dict[1].ChangeDutyCycle(100)
+    p_dict[2].ChangeDutyCycle(50)
+    p_dict[3].ChangeDutyCycle(50)
+    p_dict[4].ChangeDutyCycle(100)
+    moveForward()
 
 
 def turnRight():
-    GPIO.output(in_dict[1], GPIO.LOW)
-    GPIO.output(in_dict[2], GPIO.HIGH)
-    GPIO.output(in_dict[3], GPIO.HIGH)
-    GPIO.output(in_dict[4], GPIO.LOW)
-    GPIO.output(in_dict[5], GPIO.LOW)
-    GPIO.output(in_dict[6], GPIO.HIGH)
-    GPIO.output(in_dict[7], GPIO.HIGH)
-    GPIO.output(in_dict[8], GPIO.LOW)
+    p_dict[1].ChangeDutyCycle(50)
+    p_dict[2].ChangeDutyCycle(100)
+    p_dict[3].ChangeDutyCycle(100)
+    p_dict[4].ChangeDutyCycle(50)
+    moveForward()
 
 
-bd = BlueDot()
+bd = BlueDot(col=2)
+
 
 
 def move(pos):
     if pos.top:
-        p_dict[1].ChangeDutyCycle(100)
-        p_dict[2].ChangeDutyCycle(100)
-        p_dict[3].ChangeDutyCycle(100)
-        p_dict[4].ChangeDutyCycle(100)
         moveForward()
     elif pos.bottom:
-        p_dict[1].ChangeDutyCycle(100)
-        p_dict[2].ChangeDutyCycle(100)
-        p_dict[3].ChangeDutyCycle(100)
-        p_dict[4].ChangeDutyCycle(100)
         moveBackward()
     elif pos.left:
         turnLeft()
@@ -110,6 +98,8 @@ def move(pos):
     elif pos.middle:
         stopMotors()
 
+def moveSprite():
+    sprite_animation_final.attack()
 
 for p in p_dict:
     p_dict[p].start(25)
@@ -121,8 +111,9 @@ print("\n")
 
 while (1):
 
-    bd.when_pressed = move
-    bd.when_moved = move
+    bd[0,0].when_pressed = move
+    bd[0,0].when_moved = move
+    bd[1,0].when_pressed = moveSprite
 
     x = str(input())
     if x == 'd':
