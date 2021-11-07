@@ -12,6 +12,8 @@ while(1):
     GPIO.output(4, GPIO.LOW)
     sleep(0.0005)
 
+    print(GPIO.input(4))
+
     x = str(input())
     if x == 'a':
         GPIO.cleanup()
