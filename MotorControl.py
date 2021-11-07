@@ -3,7 +3,7 @@
 
 import RPi.GPIO as GPIO
 # import TextToSpeech
-# import DistanceSensor
+import DistanceSensor
 from bluedot import BlueDot
 from time import sleep
 import sprite_animation_final
