@@ -66,18 +66,18 @@ def stopMotors():
 
 
 def turnLeft():
-    p_dict[1].ChangeDutyCycle(100)
-    p_dict[2].ChangeDutyCycle(50)
-    p_dict[3].ChangeDutyCycle(50)
-    p_dict[4].ChangeDutyCycle(100)
-    moveForward()
-
-
-def turnRight():
     p_dict[1].ChangeDutyCycle(50)
     p_dict[2].ChangeDutyCycle(100)
     p_dict[3].ChangeDutyCycle(100)
     p_dict[4].ChangeDutyCycle(50)
+    moveForward()
+
+
+def turnRight():
+    p_dict[1].ChangeDutyCycle(100)
+    p_dict[2].ChangeDutyCycle(50)
+    p_dict[3].ChangeDutyCycle(50)
+    p_dict[4].ChangeDutyCycle(100)
     moveForward()
 
 
