@@ -8,9 +8,9 @@ GPIO.setup(4, GPIO.OUT)
 
 while(1):
     GPIO.output(4, GPIO.HIGH)
-    sleep(0.5)
+    sleep(0.0005)
     GPIO.output(4, GPIO.LOW)
-    sleep(0.5)
+    sleep(0.0005)
 
     x = str(input())
     if x == 'a':
