@@ -5,8 +5,8 @@ import time
 class DistanceSensor:
     def __init__(self):
         # set GPIO Pins
-        self.GPIO_TRIGGER = 2
-        self.GPIO_ECHO = 3
+        self.GPIO_TRIGGER = 8
+        self.GPIO_ECHO = 7
 
         # set GPIO direction (IN / OUT)
         GPIO.setup(self.GPIO_TRIGGER, GPIO.OUT)

@@ -212,3 +212,9 @@ while (1):
     else:
         print("<<<  wrong data  >>>")
         print("please enter the defined data to continue.....")
+
+    if(dist.distance()<=20):
+        GPIO.output(in_dict[1], GPIO.LOW)
+        GPIO.output(in_dict[3], GPIO.LOW)
+        GPIO.output(in_dict[5], GPIO.LOW)
+        GPIO.output(in_dict[7], GPIO.LOW)
