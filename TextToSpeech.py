@@ -19,3 +19,6 @@ def play(tts):
     # myobj.save("texttospeech.mp3")
     # os.system("texttospeech.mp3")
     # os.remove("./texttospeech.mp3")
+
+
+play("This is a test string")

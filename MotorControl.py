@@ -12,7 +12,7 @@ import sprite_animation_final
 import os
 import sys
 import pygame
-import cv2
+# import cv2
 from TextToSpeech import play
 
 # odd numbers are forwards, even numbers are backwards
@@ -147,8 +147,6 @@ print("\n")
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
-play("This is a test string")
-
 while (1):
     bd[0,0].when_pressed = move
     bd[0,0].when_moved = move
@@ -169,28 +167,28 @@ while (1):
     ## code for camera interfacing
     # eye detection
     # code and algorithm utilized in an altered form from code on programming.net
-    ret, img = cap.read()
-
-    # resizing for faster detection
-    frame = cv2.resize(img, (800, 480))
-
-    # color-space initialization
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-    # Execute MultiScale detections for eyes and bodies
-    eyes = eye_cascade.detectMultiScale(gray, 1.1, 5)
-
-    for (ex, ey, ew, eh) in eyes:
-        cv2.rectangle(img, (ex, ey), (ex + ew, ey + eh), (255, 0, 0), 2)
-        print('' + str(ex) + ' ' + str(ey) + ' ' + str(ew) + ' ' + str(eh))
-        # stimulus and response
-        if ex * ey > 40 * 40:
-            player.wink()
-
-    # cv2.imshow('img', img)
-    k = cv2.waitKey(30) & 0xff
-    if k == 27:
-        break
+    # ret, img = cap.read()
+    #
+    # # resizing for faster detection
+    # frame = cv2.resize(img, (800, 480))
+    #
+    # # color-space initialization
+    # gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    #
+    # # Execute MultiScale detections for eyes and bodies
+    # eyes = eye_cascade.detectMultiScale(gray, 1.1, 5)
+    #
+    # for (ex, ey, ew, eh) in eyes:
+    #     cv2.rectangle(img, (ex, ey), (ex + ew, ey + eh), (255, 0, 0), 2)
+    #     print('' + str(ex) + ' ' + str(ey) + ' ' + str(ew) + ' ' + str(eh))
+    #     # stimulus and response
+    #     if ex * ey > 40 * 40:
+    #         player.wink()
+    #
+    # # cv2.imshow('img', img)
+    # k = cv2.waitKey(30) & 0xff
+    # if k == 27:
+    #     break
 
     # x = str(input())
     # if x == 'a':
