@@ -86,8 +86,16 @@ bd = BlueDot()
 
 def move(pos):
     if pos.top:
+        p_dict[1].ChangeDutyCycle(100)
+        p_dict[2].ChangeDutyCycle(100)
+        p_dict[3].ChangeDutyCycle(100)
+        p_dict[4].ChangeDutyCycle(100)
         moveForward()
     elif pos.bottom:
+        p_dict[1].ChangeDutyCycle(100)
+        p_dict[2].ChangeDutyCycle(100)
+        p_dict[3].ChangeDutyCycle(100)
+        p_dict[4].ChangeDutyCycle(100)
         moveBackward()
     elif pos.left:
         turnLeft()
