@@ -18,13 +18,13 @@ class Player(pygame.sprite.Sprite):
         self.bootup_sprites.append(pygame.image.load('face_7.png'))
 
         # list for wink animation
-        self.wink_animation = False
-        self.wink_sprites = []
-        self.wink_sprites.append(pygame.image.load('face_5.png'))
-        self.wink_sprites.append(pygame.image.load('face_8.png'))
-        self.wink_sprites.append(pygame.image.load('face_9.png'))
-        self.wink_sprites.append(pygame.image.load('face_8.png'))
-        self.wink_sprites.append(pygame.image.load('face_5.png'))
+        # self.wink_animation = False
+        # self.wink_sprites = []
+        # self.wink_sprites.append(pygame.image.load('face_5.png'))
+        # self.wink_sprites.append(pygame.image.load('face_8.png'))
+        # self.wink_sprites.append(pygame.image.load('face_9.png'))
+        # self.wink_sprites.append(pygame.image.load('face_8.png'))
+        # self.wink_sprites.append(pygame.image.load('face_5.png'))
 
         self.current_sprite = 4
         self.image = self.bootup_sprites[self.current_sprite]
