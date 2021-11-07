@@ -120,6 +120,13 @@ moving_sprites = pygame.sprite.Group()
 player = sprite_animation_final.Player(100, 100)
 moving_sprites.add(player)
 
+
+screen.fill((0, 0, 0))
+moving_sprites.draw(screen)
+moving_sprites.update(0.035)
+pygame.display.flip()
+clock.tick(60)
+
 def moveSprite():
     print("pressed square")
     player.attack()
@@ -143,13 +150,9 @@ print("\n")
 while (1):
 
     bd[0,0].when_pressed = move
+    bd[0,0].when_moved = move
     bd[1,0].when_pressed = moveSprite
 
-    screen.fill((0, 0, 0))
-    moving_sprites.draw(screen)
-    moving_sprites.update(0.035)
-    pygame.display.flip()
-    clock.tick(60)
     x = str(input())
     if x == 'd':
         dist = DistanceSensor.distance()
