@@ -149,7 +149,7 @@ while (1):
     pygame.display.flip()
     clock.tick(60)
 
-    x = str(input())
+    # x = str(input())
     if x == 'a':
         print("before: "+str(player.attack_animation))
         if(player.attack_animation==False):
