@@ -86,6 +86,8 @@ def turnRight():
 
 
 bd = BlueDot(cols=2)
+bd[0,0].color = "blue"
+bd[1,0].color = "red"
 bd[1,0].square = True
 
 pygame.init()
@@ -120,7 +122,7 @@ def square():
     print("pressed square")
     print("Measured Distance = %.1f cm" % dist.distance())
     sleep(1)
-
+    
 
 for p in p_dict:
     p_dict[p].start(25)
@@ -148,6 +150,7 @@ while (1):
     if x == 'd':
         print("Measured Distance = %.1f cm" % dist.distance())
         sleep(1)
+        x = 'z'
     elif x == '[':
         print("text to speech")
         TextToSpeech.play("Hello World")
