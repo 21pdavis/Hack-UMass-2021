@@ -20,7 +20,7 @@ class Player(pygame.sprite.Sprite):
 
         self.rect = self.image.get_rect()
         #self.rect.topleft = [pos_x, pos_y]
-        self.rect.center = (325, 240)
+        self.rect.center = (325, 200)
 
     def attack(self):
         self.current_sprite = 0
