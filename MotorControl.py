@@ -148,7 +148,7 @@ while (1):
 
     x = str(input())
     if x == 'd':
-        print("Raw Distance = "+dist.distance())
+        print("Raw Distance = "+str(dist.distance()))
         print("Measured Distance = %.1f cm" % dist.distance())
         sleep(1)
         x = 'z'
