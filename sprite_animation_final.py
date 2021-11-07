@@ -26,7 +26,7 @@ class Player(pygame.sprite.Sprite):
         # self.wink_sprites.append(pygame.image.load('face_8.png'))
         # self.wink_sprites.append(pygame.image.load('face_5.png'))
 
-        self.current_sprite = 4
+        self.current_sprite = 0
         self.image = self.bootup_sprites[self.current_sprite]
 
         self.rect = self.image.get_rect()
