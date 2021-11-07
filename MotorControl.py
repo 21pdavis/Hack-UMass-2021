@@ -145,7 +145,7 @@ while (1):
 
     screen.fill((0, 0, 0))
     moving_sprites.draw(screen)
-    moving_sprites.update(0.5)
+    player.update(0.5)
     pygame.display.flip()
     clock.tick(60)
 
