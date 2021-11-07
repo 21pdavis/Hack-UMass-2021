@@ -120,7 +120,9 @@ def move(pos):
 
 def square():
     print("pressed square")
+    print("before: "+str(player.attack_animation))
     player.attack()
+    print("after: "+str(player.attack_animation))
     print("Measured Distance = %.1f cm" % dist.distance())
     sleep(1)
     
