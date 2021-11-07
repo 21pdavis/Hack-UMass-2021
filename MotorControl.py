@@ -66,19 +66,33 @@ def stopMotors():
 
 
 def turnLeft():
-    p_dict[1].ChangeDutyCycle(50)
+    p_dict[1].ChangeDutyCycle(100)
     p_dict[2].ChangeDutyCycle(100)
     p_dict[3].ChangeDutyCycle(100)
-    p_dict[4].ChangeDutyCycle(50)
-    moveForward()
+    p_dict[4].ChangeDutyCycle(100)
+    GPIO.output(in_dict[1], GPIO.HIGH)
+    GPIO.output(in_dict[2], GPIO.LOW)
+    GPIO.output(in_dict[3], GPIO.LOW)
+    GPIO.output(in_dict[4], GPIO.HIGH)
+    GPIO.output(in_dict[5], GPIO.HIGH)
+    GPIO.output(in_dict[6], GPIO.LOW)
+    GPIO.output(in_dict[7], GPIO.LOW)
+    GPIO.output(in_dict[8], GPIO.HIGH)
 
 
 def turnRight():
     p_dict[1].ChangeDutyCycle(100)
-    p_dict[2].ChangeDutyCycle(50)
-    p_dict[3].ChangeDutyCycle(50)
+    p_dict[2].ChangeDutyCycle(100)
+    p_dict[3].ChangeDutyCycle(100)
     p_dict[4].ChangeDutyCycle(100)
-    moveForward()
+    GPIO.output(in_dict[1], GPIO.LOW)
+    GPIO.output(in_dict[2], GPIO.HIGH)
+    GPIO.output(in_dict[3], GPIO.HIGH)
+    GPIO.output(in_dict[4], GPIO.LOW)
+    GPIO.output(in_dict[5], GPIO.LOW)
+    GPIO.output(in_dict[6], GPIO.HIGH)
+    GPIO.output(in_dict[7], GPIO.HIGH)
+    GPIO.output(in_dict[8], GPIO.LOW)
 
 
 bd = BlueDot()
