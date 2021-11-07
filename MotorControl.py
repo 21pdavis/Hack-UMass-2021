@@ -10,6 +10,7 @@ import sprite_animation_final
 import os
 import sys
 import pygame
+import cv2
 
 # odd numbers are forwards, even numbers are backwards
 in_dict = {1: 23, 2: 24, 3: 27, 4: 17, 5: 6, 6: 5, 7: 12, 8: 16}
@@ -108,7 +109,7 @@ player = sprite_animation_final.Player(100, 100)
 moving_sprites.add(player)
 
 def move(pos):
-    print("pressed circle")
+    # print("pressed circle")
     if pos.top:
         moveForward()
     elif pos.bottom:
@@ -121,10 +122,10 @@ def move(pos):
         stopMotors()
 
 def square():
-    print("pressed square")
-    print("before: "+str(player.attack_animation))
+    # print("pressed square")
+    # print("before: "+str(player.attack_animation))
     player.attack()
-    print("after: "+str(player.attack_animation))
+    # print("after: "+str(player.attack_animation))
     print("Measured Distance = %.1f cm" % dist.distance())
     sleep(1)
     
