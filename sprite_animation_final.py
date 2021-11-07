@@ -35,13 +35,13 @@ class Player(pygame.sprite.Sprite):
 
     def attack(self):
         self.current_sprite = 0
-        if not self.wink_animation:
-            self.attack_animation = True
+        # if not self.wink_animation:
+        self.attack_animation = True
 
-    def wink(self):
-        self.current_sprite = 0
-        if not self.attack_animation:
-            self.wink_animation = True
+    # def wink(self):
+    #     self.current_sprite = 0
+    #     if not self.attack_animation:
+    #         self.wink_animation = True
 
     def update(self, speed):
         # boot up smile
@@ -52,12 +52,12 @@ class Player(pygame.sprite.Sprite):
                 self.current_sprite = 4
                 self.attack_animation = False
         # wink animation
-        if self.wink_animation:
-            print(str(self.current_sprite) + " | speed = " + str(speed))
-            self.current_sprite += speed
-            if int(self.current_sprite) >= len(self.wink_sprites):
-                self.current_sprite = 4
-                self.wink_animation = False
+        # if self.wink_animation:
+        #     print(str(self.current_sprite) + " | speed = " + str(speed))
+        #     self.current_sprite += speed
+        #     if int(self.current_sprite) >= len(self.wink_sprites):
+        #         self.current_sprite = 4
+        #         self.wink_animation = False
 
         self.image = self.wink_sprites[int(self.current_sprite)]
 
