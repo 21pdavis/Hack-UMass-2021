@@ -165,7 +165,7 @@ while (1):
 
     ## code for camera interfacing
     # eye detection
-
+    # code and algorithm utilized in an altered form from code on programming.net
     ret, img = cap.read()
 
     # resizing for faster detection
@@ -181,11 +181,8 @@ while (1):
         cv2.rectangle(img, (ex, ey), (ex + ew, ey + eh), (255, 0, 0), 2)
         print('' + str(ex) + ' ' + str(ey) + ' ' + str(ew) + ' ' + str(eh))
         # stimulus and response
-        """
-        Case 1: Eyes in frame AND eye area greater than some area
-        Case 2:
-        Case 3:
-        """
+        if ex * ey > 40 * 40:
+            player.wink()
 
     # cv2.imshow('img', img)
     k = cv2.waitKey(30) & 0xff

@@ -5,18 +5,29 @@ import sys
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos_x, pos_y):
         super().__init__()
-        
+
+        # list for boot-up animation
         self.attack_animation = False
-        self.sprites = []
-        self.sprites.append(pygame.image.load('face_1.png'))
-        self.sprites.append(pygame.image.load('face_2.png'))
-        self.sprites.append(pygame.image.load('face_3.png'))
-        self.sprites.append(pygame.image.load('face_4.png'))
-        self.sprites.append(pygame.image.load('face_5.png'))
-        self.sprites.append(pygame.image.load('face_6.png'))
-        self.sprites.append(pygame.image.load('face_7.png'))
+        self.bootup_sprites = []
+        self.bootup_sprites.append(pygame.image.load('face_1.png'))
+        self.bootup_sprites.append(pygame.image.load('face_2.png'))
+        self.bootup_sprites.append(pygame.image.load('face_3.png'))
+        self.bootup_sprites.append(pygame.image.load('face_4.png'))
+        self.bootup_sprites.append(pygame.image.load('face_5.png'))
+        self.bootup_sprites.append(pygame.image.load('face_6.png'))
+        self.bootup_sprites.append(pygame.image.load('face_7.png'))
+
+        # list for wink animation
+        self.wink_animation = False
+        self.wink_sprites = []
+        self.wink_sprites.append(pygame.image.load('face_5.png'))
+        self.wink_sprites.append(pygame.image.load('face_8.png'))
+        self.wink_sprites.append(pygame.image.load('face_9.png'))
+        self.wink_sprites.append(pygame.image.load('face_8.png'))
+        self.wink_sprites.append(pygame.image.load('face_5.png'))
+
         self.current_sprite = 4
-        self.image = self.sprites[self.current_sprite]
+        self.image = self.bootup_sprites[self.current_sprite]
 
         self.rect = self.image.get_rect()
         #self.rect.topleft = [pos_x, pos_y]
@@ -24,17 +35,31 @@ class Player(pygame.sprite.Sprite):
 
     def attack(self):
         self.current_sprite = 0
-        self.attack_animation = True
+        if not self.wink_animation:
+            self.attack_animation = True
+
+    def wink(self):
+        self.current_sprite = 0
+        if not self.attack_animation:
+            self.wink_animation = True
 
     def update(self, speed):
+        # boot up smile
         if self.attack_animation:
             print(str(self.current_sprite)+" | speed = "+str(speed))
             self.current_sprite += speed
-            if int(self.current_sprite) >= len(self.sprites):
+            if int(self.current_sprite) >= len(self.bootup_sprites):
                 self.current_sprite = 4
                 self.attack_animation = False
+        # wink animation
+        if self.wink_animation:
+            print(str(self.current_sprite) + " | speed = " + str(speed))
+            self.current_sprite += speed
+            if int(self.current_sprite) >= len(self.wink_sprites):
+                self.current_sprite = 4
+                self.wink_animation = False
 
-        self.image = self.sprites[int(self.current_sprite)]
+        self.image = self.wink_sprites[int(self.current_sprite)]
 
 
 # General setup
