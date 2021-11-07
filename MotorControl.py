@@ -3,12 +3,13 @@
 
 import RPi.GPIO as GPIO
 # import TextToSpeech
-# import DistanceSensor
+import DistanceSensor as distsensor
 from bluedot import BlueDot
 from time import sleep
-import sys
-sys.path.append('../')
 import sprite_animation_final
+import os
+import sys
+import pygame
 
 # odd numbers are forwards, even numbers are backwards
 in_dict = {1: 23, 2: 24, 3: 27, 4: 17, 5: 6, 6: 5, 7: 12, 8: 16}
@@ -85,10 +86,27 @@ def turnRight():
 
 
 bd = BlueDot(cols=2)
-bd[0,0].square=True
+bd[0,0].color = "blue"
+bd[1,0].color = "red"
+bd[1,0].square = True
 
+pygame.init()
+clock = pygame.time.Clock()
+
+os.environ["DISPLAY"] = ":0"
+pygame.display.init()
+screen_width = 800
+screen_height = 480
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption("Sprite Animation")
+
+# Creating the sprites and groups
+moving_sprites = pygame.sprite.Group()
+player = sprite_animation_final.Player(100, 100)
+moving_sprites.add(player)
 
 def move(pos):
+    print("pressed circle")
     if pos.top:
         moveForward()
     elif pos.bottom:
@@ -100,12 +118,16 @@ def move(pos):
     elif pos.middle:
         stopMotors()
 
-
-def moveSprite():
-    sprite_animation_final.attack()
+def square():
+    print("pressed square")
+    print("Measured Distance = %.1f cm" % dist.distance())
+    sleep(1)
+    
 
 for p in p_dict:
     p_dict[p].start(25)
+
+dist = distsensor.DistanceSensor()
 
 print("\n")
 print("The default speed & direction of motor is LOW & Forward.....")
@@ -116,13 +138,20 @@ while (1):
 
     bd[0,0].when_pressed = move
     bd[0,0].when_moved = move
-    bd[1,0].when_pressed = moveSprite
+    bd[1,0].when_pressed = square
+
+    screen.fill((0, 0, 0))
+    moving_sprites.draw(screen)
+    moving_sprites.update(0.035)
+    pygame.display.flip()
+    clock.tick(60)
 
     x = str(input())
     if x == 'd':
-        dist = DistanceSensor.distance()
-        print("Measured Distance = %.1f cm" % dist)
+        print("Raw Distance = "+str(dist.distance()))
+        print("Measured Distance = %.1f cm" % dist.distance())
         sleep(1)
+        x = 'z'
     elif x == '[':
         print("text to speech")
         TextToSpeech.play("Hello World")
@@ -184,3 +213,9 @@ while (1):
     else:
         print("<<<  wrong data  >>>")
         print("please enter the defined data to continue.....")
+
+    if(dist.distance()<=20):
+        GPIO.output(in_dict[1], GPIO.LOW)
+        GPIO.output(in_dict[3], GPIO.LOW)
+        GPIO.output(in_dict[5], GPIO.LOW)
+        GPIO.output(in_dict[7], GPIO.LOW)

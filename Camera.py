@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import picamera import PiCamera as pc
+from picamera import PiCamera as pc
 import numpy as np
 import cv2
 from time import sleep
