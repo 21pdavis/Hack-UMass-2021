@@ -144,8 +144,8 @@ print("r-run s-stop f-forward b-backward l-low m-medium h-high e-exit")
 print("\n")
 
 # eye detection initialization
-eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
-cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+# eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
+# cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
 while (1):
     bd[0,0].when_pressed = move
@@ -267,6 +267,6 @@ while (1):
     #     print("please enter the defined data to continue.....")
 
 
-cap.release()
-cv2.destroyAllWindows()
+# cap.release()
+# cv2.destroyAllWindows()
 GPIO.cleanup()
