@@ -15,7 +15,7 @@ class Player(pygame.sprite.Sprite):
         self.sprites.append(pygame.image.load('face_5.png'))
         self.sprites.append(pygame.image.load('face_6.png'))
         self.sprites.append(pygame.image.load('face_7.png'))
-        self.current_sprite = 0
+        self.current_sprite = 4
         self.image = self.sprites[self.current_sprite]
 
         self.rect = self.image.get_rect()
