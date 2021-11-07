@@ -97,7 +97,7 @@ clock = pygame.time.Clock()
 
 screen_width = 650
 screen_height = 480
-screen = pygame.display.set_mode((screen_width, screen_height))
+screen = pygame.display.set_mode(screen_width, screen_height)
 pygame.display.set_caption("Sprite Animation")
 os.environ["DISPLAY"] = ":0"
 pygame.display.init()
@@ -125,6 +125,7 @@ def square():
     print("before: "+str(player.attack_animation))
     player.attack()
     print("after: "+str(player.attack_animation))
+    print(str(self.current_sprite))
     print("Measured Distance = %.1f cm" % dist.distance())
     sleep(1)
     
@@ -232,3 +233,5 @@ while (1):
         GPIO.output(in_dict[3], GPIO.LOW)
         GPIO.output(in_dict[5], GPIO.LOW)
         GPIO.output(in_dict[7], GPIO.LOW)
+
+GPIO.cleanup()
