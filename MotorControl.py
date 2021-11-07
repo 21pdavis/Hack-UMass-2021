@@ -86,7 +86,7 @@ def turnRight():
 
 
 bd = BlueDot(cols=2)
-bd[0,0].square=True
+bd[1,0].square=True
 
 
 def move(pos):
@@ -121,12 +121,6 @@ player = sprite_animation_final.Player(100, 100)
 moving_sprites.add(player)
 
 
-screen.fill((0, 0, 0))
-moving_sprites.draw(screen)
-moving_sprites.update(0.035)
-pygame.display.flip()
-clock.tick(60)
-
 def moveSprite():
     print("pressed square")
     player.attack()
@@ -148,6 +142,12 @@ print("r-run s-stop f-forward b-backward l-low m-medium h-high e-exit")
 print("\n")
 
 while (1):
+
+    screen.fill((0, 0, 0))
+    moving_sprites.draw(screen)
+    moving_sprites.update(0.035)
+    pygame.display.flip()
+    clock.tick(60)
 
     bd[0,0].when_pressed = move
     bd[0,0].when_moved = move
