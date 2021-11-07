@@ -89,8 +89,6 @@ def turnRight():
     p_dict[4].ChangeDutyCycle(50)
     moveForward()
 
-def
-
 bd = BlueDot(cols=2)
 bd[0,0].color = "blue"
 bd[1,0].color = "red"
