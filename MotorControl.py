@@ -95,7 +95,7 @@ bd[1,0].square = True
 pygame.init()
 clock = pygame.time.Clock()
 
-screen_width = 750
+screen_width = 700
 screen_height = 440
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Sprite Animation")
@@ -147,7 +147,7 @@ while (1):
 
     screen.fill((0, 0, 0))
     moving_sprites.draw(screen)
-    player.update(0.1)
+    player.update(0.2)
     pygame.display.flip()
     clock.tick(60)
 
