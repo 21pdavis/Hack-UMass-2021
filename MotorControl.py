@@ -97,7 +97,7 @@ clock = pygame.time.Clock()
 
 screen_width = 650
 screen_height = 480
-screen = pygame.display.set_mode(screen_width, screen_height)
+screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Sprite Animation")
 os.environ["DISPLAY"] = ":0"
 pygame.display.init()
