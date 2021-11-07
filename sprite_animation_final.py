@@ -23,6 +23,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.center = (400, 240)
 
     def attack(self):
+        self.current_sprite = 0
         self.attack_animation = True
 
     def update(self, speed):
@@ -32,6 +33,8 @@ class Player(pygame.sprite.Sprite):
             if int(self.current_sprite) >= len(self.sprites):
                 self.current_sprite = 0
                 self.attack_animation = False
+        else:
+            self.current_sprite = 3
 
         self.image = self.sprites[int(self.current_sprite)]
 
