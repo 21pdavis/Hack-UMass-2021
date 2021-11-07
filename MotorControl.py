@@ -126,6 +126,8 @@ def square():
 for p in p_dict:
     p_dict[p].start(25)
 
+dist = DistanceSensor()
+
 print("\n")
 print("The default speed & direction of motor is LOW & Forward.....")
 print("r-run s-stop f-forward b-backward l-low m-medium h-high e-exit")
@@ -145,8 +147,7 @@ while (1):
 
     x = str(input())
     if x == 'd':
-        dist = DistanceSensor.distance()
-        print("Measured Distance = %.1f cm" % dist)
+        print("Measured Distance = %.1f cm" % dist.distance())
         sleep(1)
     elif x == '[':
         print("text to speech")
