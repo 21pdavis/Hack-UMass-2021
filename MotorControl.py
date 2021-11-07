@@ -3,7 +3,7 @@
 
 import RPi.GPIO as GPIO
 # import TextToSpeech
-import DistanceSensor
+import DistanceSensor as distsensor
 from bluedot import BlueDot
 from time import sleep
 import sprite_animation_final
@@ -118,15 +118,14 @@ def move(pos):
 
 def square():
     print("pressed square")
-    dist = DistanceSensor.distance()
-    print("Measured Distance = %.1f cm" % dist)
+    print("Measured Distance = %.1f cm" % dist.distance())
     sleep(1)
 
 
 for p in p_dict:
     p_dict[p].start(25)
 
-dist = DistanceSensor()
+dist = distsensor.DistanceSensor()
 
 print("\n")
 print("The default speed & direction of motor is LOW & Forward.....")
