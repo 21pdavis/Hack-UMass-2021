@@ -6,7 +6,8 @@ import RPi.GPIO as GPIO
 # import DistanceSensor
 from bluedot import BlueDot
 from time import sleep
-import sprite_animation_final
+import sys
+sys.path.append('../')
 
 # odd numbers are forwards, even numbers are backwards
 in_dict = {1: 23, 2: 24, 3: 27, 4: 17, 5: 6, 6: 5, 7: 12, 8: 16}
