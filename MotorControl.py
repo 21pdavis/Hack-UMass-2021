@@ -66,10 +66,6 @@ def stopMotors():
 
 
 def turnLeft():
-    p_dict[1].ChangeDutyCycle(100)
-    p_dict[2].ChangeDutyCycle(100)
-    p_dict[3].ChangeDutyCycle(100)
-    p_dict[4].ChangeDutyCycle(100)
     GPIO.output(in_dict[1], GPIO.HIGH)
     GPIO.output(in_dict[2], GPIO.LOW)
     GPIO.output(in_dict[3], GPIO.LOW)
@@ -81,10 +77,6 @@ def turnLeft():
 
 
 def turnRight():
-    p_dict[1].ChangeDutyCycle(100)
-    p_dict[2].ChangeDutyCycle(100)
-    p_dict[3].ChangeDutyCycle(100)
-    p_dict[4].ChangeDutyCycle(100)
     GPIO.output(in_dict[1], GPIO.LOW)
     GPIO.output(in_dict[2], GPIO.HIGH)
     GPIO.output(in_dict[3], GPIO.HIGH)
@@ -176,10 +168,10 @@ while (1):
 
     elif x == 'l':
         print("low")
-        p_dict[1].ChangeDutyCycle(25)
-        p_dict[2].ChangeDutyCycle(25)
-        p_dict[3].ChangeDutyCycle(25)
-        p_dict[4].ChangeDutyCycle(25)
+        p_dict[1].ChangeDutyCycle(75)
+        p_dict[2].ChangeDutyCycle(75)
+        p_dict[3].ChangeDutyCycle(75)
+        p_dict[4].ChangeDutyCycle(75)
         x = 'z'
 
     elif x == 'h':
