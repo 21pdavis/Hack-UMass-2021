@@ -90,6 +90,7 @@ bd[0,0].square=True
 
 
 def move(pos):
+    print("pressed circle")
     if pos.top:
         moveForward()
     elif pos.bottom:
@@ -120,6 +121,7 @@ player = sprite_animation_final.Player(100, 100)
 moving_sprites.add(player)
 
 def moveSprite():
+    print("pressed square")
     player.attack()
 # while True:
 #     for event in pygame.event.get():
@@ -141,7 +143,6 @@ print("\n")
 while (1):
 
     bd[0,0].when_pressed = move
-    bd[0,0].when_moved = move
     bd[1,0].when_pressed = moveSprite
 
     screen.fill((0, 0, 0))
