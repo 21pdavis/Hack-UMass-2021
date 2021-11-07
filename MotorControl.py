@@ -97,6 +97,7 @@ bd[1,0].square = True
 pygame.init()
 clock = pygame.time.Clock()
 
+# 800 is max width, but 650 is selected to allow for escape from the program
 screen_width = 650
 screen_height = 480
 screen = pygame.display.set_mode((screen_width, screen_height))
@@ -146,7 +147,6 @@ eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
 while (1):
-
     bd[0,0].when_pressed = move
     bd[0,0].when_moved = move
     bd[1,0].when_pressed = square
@@ -156,6 +156,41 @@ while (1):
     player.update(0.12)
     pygame.display.flip()
     clock.tick(60)
+
+    if (dist.distance() <= 20):
+        GPIO.output(in_dict[1], GPIO.LOW)
+        GPIO.output(in_dict[3], GPIO.LOW)
+        GPIO.output(in_dict[5], GPIO.LOW)
+        GPIO.output(in_dict[7], GPIO.LOW)
+
+    ## code for camera interfacing
+    # eye detection
+
+    ret, img = cap.read()
+
+    # resizing for faster detection
+    frame = cv2.resize(img, (800, 480))
+
+    # color-space initialization
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    # Execute MultiScale detections for eyes and bodies
+    eyes = eye_cascade.detectMultiScale(gray, 1.1, 5)
+
+    for (ex, ey, ew, eh) in eyes:
+        cv2.rectangle(img, (ex, ey), (ex + ew, ey + eh), (255, 0, 0), 2)
+        print('' + str(ex) + ' ' + str(ey) + ' ' + str(ew) + ' ' + str(eh))
+        # stimulus and response
+        """
+        Case 1: Eyes in frame AND eye area greater than some area
+        Case 2:
+        Case 3:
+        """
+
+    # cv2.imshow('img', img)
+    k = cv2.waitKey(30) & 0xff
+    if k == 27:
+        break
 
     # x = str(input())
     # if x == 'a':
@@ -233,34 +268,6 @@ while (1):
     #     print("<<<  wrong data  >>>")
     #     print("please enter the defined data to continue.....")
 
-    if(dist.distance()<=20):
-        GPIO.output(in_dict[1], GPIO.LOW)
-        GPIO.output(in_dict[3], GPIO.LOW)
-        GPIO.output(in_dict[5], GPIO.LOW)
-        GPIO.output(in_dict[7], GPIO.LOW)
-    
-    ## code for camera interfacing
-    # eye detection
-
-    ret, img = cap.read()
-
-    # resizing for faster detection
-    frame = cv2.resize(img, (800, 480))
-
-    # color-space initialization
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-    # Execute MultiScale detections for eyes and bodies
-    eyes = eye_cascade.detectMultiScale(gray, 1.1, 5)
-
-    for (ex, ey, ew, eh) in eyes:
-        cv2.rectangle(img, (ex, ey), (ex + ew, ey + eh), (255, 0, 0), 2)
-        print('' + str(ex) + ' ' + str(ey) + ' ' + str(ew) + ' ' + str(eh))
-
-    # cv2.imshow('img', img)
-    k = cv2.waitKey(30) & 0xff
-    if k == 27:
-        break
 
 cap.release()
 cv2.destroyAllWindows()
