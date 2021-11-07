@@ -9,12 +9,15 @@ GPIO.setup(4, GPIO.OUT)
 while(1):
     GPIO.output(4, GPIO.HIGH)
     sleep(0.0005)
+
+    print(GPIO.input(4))
+    
     GPIO.output(4, GPIO.LOW)
     sleep(0.0005)
 
     print(GPIO.input(4))
 
-    x = str(input())
-    if x == 'a':
-        GPIO.cleanup()
-        break
+    #x = str(input())
+    #if x == 'a':
+    #    GPIO.cleanup()
+    #    break
