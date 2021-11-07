@@ -152,7 +152,10 @@ while (1):
     x = str(input())
     if x == 'a':
         print("before: "+str(player.attack_animation))
-        player.attack()
+        if(player.attack_animation==False):
+            player.attack()
+        else:
+            print("already animating")
         print("after: "+str(player.attack_animation))
         x = 'z'
     elif x == 'd':
