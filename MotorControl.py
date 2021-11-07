@@ -3,7 +3,6 @@
 
 import RPi.GPIO as GPIO
 # import TextToSpeech
-import cv2
 
 import DistanceSensor as distsensor
 from bluedot import BlueDot
