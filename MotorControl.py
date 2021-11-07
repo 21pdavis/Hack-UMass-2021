@@ -18,7 +18,7 @@ from TextToSpeech import play
 # odd numbers are forwards, even numbers are backwards
 in_dict = {1: 23, 2: 24, 3: 27, 4: 17, 5: 6, 6: 5, 7: 12, 8: 16}
 
-en_dict = {1: 25, 2: 22, 3: 13, 4: 26}
+en_dict = {1: 25, 2: 22, 3: 0, 4: 26}
 
 temp1 = 1
 
