@@ -101,9 +101,34 @@ def move(pos):
         stopMotors()
 
 
-def moveSprite():
-    sprite_animation_final.attack()
+# General setup
+pygame.init()
+clock = pygame.time.Clock()
 
+# Game Screen
+os.environ["DISPLAY"] = ":0"
+pygame.display.init()
+screen_width = 800
+screen_height = 480
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption("Sprite Animation")
+
+# Creating the sprites and groups
+moving_sprites = pygame.sprite.Group()
+player = sprite_animation_final.Player(100, 100)
+moving_sprites.add(player)
+
+def moveSprite():
+    player.attack()
+# while True:
+#     for event in pygame.event.get():
+#         if event.type == pygame.QUIT:
+#             pygame.quit()
+#             sys.exit()
+#         if event.type == pygame.KEYDOWN:
+#             player.attack()
+
+    # Drawing
 for p in p_dict:
     p_dict[p].start(25)
 
@@ -118,6 +143,11 @@ while (1):
     bd[0,0].when_moved = move
     bd[1,0].when_pressed = moveSprite
 
+    screen.fill((0, 0, 0))
+    moving_sprites.draw(screen)
+    moving_sprites.update(0.035)
+    pygame.display.flip()
+    clock.tick(60)
     x = str(input())
     if x == 'd':
         dist = DistanceSensor.distance()
