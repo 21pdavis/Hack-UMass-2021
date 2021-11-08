@@ -269,3 +269,5 @@ while (1):
 # cap.release()
 # cv2.destroyAllWindows()
 GPIO.cleanup()
+
+#That's all folks!
